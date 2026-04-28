@@ -13,4 +13,24 @@ function draw() {
   
 }
 
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    dirX = -1;
+    dirY = 0;
+    angle = PI;
+  } else if (keyCode === RIGHT_ARROW) {
+    dirX = 1;
+    dirY = 0;
+    angle = 0;
+  } else if (keyCode === UP_ARROW) {
+    dirX = 0;
+    dirY = -1;
+    angle = -PI / 2;
+  } else if (keyCode === DOWN_ARROW) {
+    dirX = 0;
+    dirY = 1;
+    angle = PI / 2;
+  } 
+}
+
 
