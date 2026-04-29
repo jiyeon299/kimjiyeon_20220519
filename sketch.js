@@ -108,9 +108,8 @@ function preload() {
 function setup() {
   createCanvas(2816, 1536);
 
-
   beansSet();
-
+  spawnEnemy();
 }
 
 function draw() {
@@ -195,8 +194,6 @@ function draw() {
   //적이동
   EnemyMove();
 
-  //적 생성 
-  drawEnemy();
 
   checkHit();
 
@@ -219,6 +216,9 @@ function draw() {
   textAlign(LEFT, TOP);
   text("Score: " + score, 50, 40);
 
+
+
+  heartPacman();
   }
 
 
@@ -351,10 +351,10 @@ function mousePressed() {
 
 
 function EnemyMove(){
-    let nextEnemyX = enemyX + enemyDirX * enemySpeed;
-  let nextEnemyY = enemyY + enemyDirY * enemySpeed;
+  let nextX = enemyX + enemyDirX * enemySpeed;
+  let nextY = enemyY + enemyDirY * enemySpeed;
 
-  if (hitWall(nextEnemyX, nextEnemyY)) {
+  if (hitWall(nextX, nextY)) {
     let r = floor(random(4));
 
     if (r == 0) {
@@ -371,8 +371,8 @@ function EnemyMove(){
       enemyDirY = -1;
     }
   } else {
-    enemyX = nextEnemyX;
-    enemyY = nextEnemyY;
+    enemyX = nextX;
+    enemyY = nextY;
   }
 
 }
@@ -426,3 +426,43 @@ function restart() {
   beans = [];
   beansSet();
 }
+
+  function heartPacman(){
+    textSize(50);
+    textAlign(RIGHT, TOP);
+
+    let heart = "";
+
+    for (let i = 0; i < energy; i++) {
+    heart += "♥ ";
+    }
+
+    fill(255, 0, 0);
+    text(heart, width - 50, 40);
+
+  }
+
+
+  function spawnEnemy() {
+    let i = floor(random(beans.length));
+
+    enemyX = beans[i].x;
+    enemyY = beans[i].y;
+
+    let r = floor(random(4)); //랜덤으로 방향 정하기 
+
+    if (r == 0) {
+    enemyDirX = 1;
+    enemyDirY = 0;
+    } else if (r == 1) {
+    enemyDirX = -1;
+    enemyDirY = 0;
+    } else if (r == 2) {
+    enemyDirX = 0;
+    enemyDirY = 1;
+    } else if (r == 3) {
+    enemyDirX = 0;
+    enemyDirY = -1;
+    }
+
+  }
