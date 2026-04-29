@@ -16,16 +16,16 @@ let walls = [
   { x: 380, y: 1000, w: 40, h: 500 },   
   { x: 2395, y: 1000, w: 40, h: 500 }, 
   { x: 375, y: 970, w: 200, h: 40 }, 
-  { x: 2240, y: 970, w: 200, h: 40 }, 
+  { x: 2240, y: 850, w: 200, h: 160 }, 
   { x: 375, y: 500, w: 200, h: 40 }, 
-  { x: 2240, y: 500, w: 200, h: 40 }, 
+  { x: 2240, y: 510, w: 200, h: 200 }, 
   { x: 2250, y: 690, w: 580, h: 40 }, 
   { x: 2250, y: 810, w: 580, h: 40 }, 
   { x: 0, y: 690, w: 575, h: 40 }, 
   { x: 0, y: 810, w: 575, h: 40 }, 
   { x: 2240, y: 525, w: 40, h: 200 },
-  { x: 535, y: 525, w: 40, h: 200 },
-  { x: 535, y: 820, w: 40, h: 180 },
+  { x: 280, y: 525, w: 300, h: 200 },
+  { x: 280, y: 820, w: 300, h: 200 },
   { x: 2240, y: 810, w: 40, h: 200 },
 
   //내부 벽 
@@ -82,7 +82,7 @@ let walls = [
   { x: 1235, y: 655, w:130, h: 215 },
   { x: 1455, y: 655, w:130, h: 215 },
 
-  { x: 1240, y: 830, w:340, h: 45},
+  { x: 1240, y: 670, w:340, h: 210},
 ];
 
 
@@ -153,13 +153,13 @@ if (x > 2816 && y > 700 && y < 800) {
 
 
 
-  // 벽 확인!! 
-  // fill(255, 0, 255,120);
-  // noStroke();
+  //벽 확인!! 
+  fill(255, 0, 255,120);
+  noStroke();
 
-  // for (let i = 0; i < walls.length; i++) {
-  //   rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
-  // }
+  for (let i = 0; i < walls.length; i++) {
+    rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
+  }
 
     // 콩 
   fill(255, 220, 150);
@@ -212,8 +212,8 @@ function hitWall(nextX, nextY) {
 
 //콩 생성 함수 
 function beansSet(){
-  for (let bx = 420; bx < 2400; bx += 90) {
-    for (let by = 140; by < 1400; by += 90) {
+  for (let bx = 420; bx < 2450; bx +=60) {
+    for (let by = 130; by < 1450; by += 50) {
       // 벽 아니면 콩 생성!! 
       if (!beanInWall(bx, by)) {
         beans.push({
@@ -227,15 +227,19 @@ function beansSet(){
 }
 
 function beanInWall (bx, by){
-    for (let i = 0; i < walls.length; i++) {
+  let beanSize = 30;
+  let r = beanSize / 2;
+
+  for (let i = 0; i < walls.length; i++) {
     let wall = walls[i];
     if (
-      bx > wall.x &&
-      bx < wall.x + wall.w &&
-      by > wall.y &&
-      by < wall.y + wall.h
-    ) 
+      bx + r > wall.x &&
+      bx - r < wall.x + wall.w &&
+      by + r > wall.y &&
+      by - r < wall.y + wall.h
+    ) {
     return true;
+    }
   }
   return false;
 }
