@@ -226,7 +226,7 @@ function beansSet(){
   }
 }
 
-beanInWall (bx, by){
+function beanInWall (bx, by){
     for (let i = 0; i < walls.length; i++) {
     let wall = walls[i];
     if (
