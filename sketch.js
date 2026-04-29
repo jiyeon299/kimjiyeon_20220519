@@ -130,15 +130,17 @@ function draw() {
   let nextX = x + dirX * speed;
   let nextY = y + dirY * speed;
 
-  //콩먹기
-  eat_Beans();
-
   
   //벽 부딪혔는지 확인
   if (!hitWall(nextX, nextY)) {
     x = nextX;
     y = nextY;
   } 
+
+  
+  //콩먹기
+  eat_Beans();
+
 
   if (x < 0 && y > 700 && y < 800) {
   x = 2816;
@@ -176,7 +178,7 @@ if (x > 2816 && y > 700 && y < 800) {
   fill(255, 255, 0);
   noStroke();
 
-  let mouth = abs(sin(frameCount * 0.1)) * PI / 5;
+  let mouth = abs(sin(frameCount * 0.2)) * PI / 5;
 
   push();
   translate(x,y);
@@ -187,8 +189,8 @@ if (x > 2816 && y > 700 && y < 800) {
 
   // 점수 
   fill(255);
-  textSize(40);
-  textAlign(RIGHT, TOP);
+  textSize(80);
+  textAlign(LEFT, TOP);
   text("Score: " + score, width - 50, 40);
 
 }
@@ -250,7 +252,7 @@ function eat_Beans(){
     if (beans[i].eaten == false){
       let d = dist (x,y, beans[i].x, beans[i].y);
 
-      if (d < pacmanSize / 2){
+      if (d < pacmanSize / 12){
         beans[i].eaten = true ;
         score += 1;
       }
