@@ -106,18 +106,37 @@ function draw() {
   pop();
 }
 
-
+//길 위에 있는지 체크하는 함수
 function onRoad(hx, hy) {
   let r = pacmanSize / 2;
 
+
+  let points = [
+    { x: hx + r, y: hy }, // 오른쪽
+    { x: hx - r, y: hy }, // 왼쪽
+    { x: hx, y: hy + r }, // 아래
+    { x: hx, y: hy - r }  // 위 
+  ];
+
+
+  for (let i = 0; i < points.length; i++) {
+    if(!pointOnRoad(points[i].x, points[i].y)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// 길 위에 꼭짓점이 있는지 체크하는 함수
+function pointOnRoad(hx, hy) {
   for (let i = 0; i < roads.length; i++) {
     let road = roads[i];
 
     if (
-      hx + r > road.x &&
-      hx - r < road.x + road.w &&
-      hy + r > road.y &&
-      hy - r < road.y + road.h
+      hx > road.x &&
+      hx < road.x + road.w &&
+      hy > road.y &&
+      hy < road.y + road.h
     ) {
       return true;
     }
