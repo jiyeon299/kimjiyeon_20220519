@@ -3,13 +3,20 @@ let y = 50;
 let angle = 3;
 let speed = 2;
 
+let mapImg;
+
+function preload() {
+  mapImg = loadImage('Map.png');
+}
 
 function setup() {
-  createCanvas(600,600);
+  createCanvas(2816, 1536);
+
+
 }
 
 function draw() {
-  background(220);
+  Image(mapImg, 0, 0, width, height);
 
   let dirX = 0;
   let dirY = 0;
