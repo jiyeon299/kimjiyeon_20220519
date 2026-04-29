@@ -9,7 +9,11 @@ function draw() {
   
   fill(255, 255, 0);
   noStroke();
-  arc(50, 50, 80, 80, PI/ 5, PI / 6, PIE);
+
+  let biteSize = PI / 16;
+  let startAngle = biteSize + sin(frameCount * 0.1) + biteSize;
+  let endAngle = TWO_PI  - biteSize;
+  arc(50, 50, 80, 80, startAngle, endAngle, PIE);
   
 }
 
