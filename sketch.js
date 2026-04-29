@@ -1,7 +1,7 @@
 let x = 360; //시작 위치 
 let y = 760;
 let angle = 0;
-let speed = 3;
+let speed = 10;
 
 let pacmanSize = 50;
 let mapImg;
@@ -119,6 +119,7 @@ function draw() {
   if (gameState != "play") {
   EndMassage();
   return;
+  }
 
   let dirX = 0;
   let dirY = 0;
@@ -163,13 +164,13 @@ function draw() {
   if (x < 0 && y > 700 && y < 800) {
   x = 2816;
   y = 768;
-}
+  }
 
 
-if (x > 2816 && y > 700 && y < 800) {
-  x = 0;
-  y = 768;
-}
+  if (x > 2816 && y > 700 && y < 800) {
+    x = 0;
+    y = 768;
+  }
 
 
 
@@ -179,7 +180,7 @@ if (x > 2816 && y > 700 && y < 800) {
 
   for (let i = 0; i < walls.length; i++) {
     rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
-  }
+    }
 
     // 콩 
   fill(255, 220, 150);
@@ -218,7 +219,10 @@ if (x > 2816 && y > 700 && y < 800) {
   textAlign(LEFT, TOP);
   text("Score: " + score, 50, 40);
 
-}
+  }
+
+
+
 
 function hitWall(nextX, nextY) {
   let r = pacmanSize / 2;
@@ -402,4 +406,23 @@ function checkHit(){
   } else {
     enemyHit = false;
   }
+}
+
+function restart() {
+  x = 360;
+  y = 760;
+  angle = 0;
+
+  enemyX = 1400;
+  enemyY = 760;
+  enemyDirX = 1;
+  enemyDirY = 0;
+
+  energy = 3;
+  score = 0;
+  gameState = "play";
+  enemyHit = false;
+
+  beans = [];
+  beansSet();
 }
