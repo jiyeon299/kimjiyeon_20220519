@@ -157,6 +157,16 @@ if (x > 2816 && y > 700 && y < 800) {
   //   rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
   // }
 
+    // 콩 
+  fill(255, 220, 150);
+  noStroke();
+
+  for (let i =0; i < beans.length; i++){
+    if (beans[i].eaten == false){
+      circle(beans[i].x, beans[i].y, 15);
+    }
+  }
+
 
   // 팩맨 
   fill(255, 255, 0);
@@ -169,6 +179,8 @@ if (x > 2816 && y > 700 && y < 800) {
   rotate(angle);
   arc(0,0, pacmanSize, pacmanSize, mouth, TWO_PI - mouth, PIE);
   pop();
+
+
 }
 
 function hitWall(nextX, nextY) {
@@ -180,9 +192,9 @@ function hitWall(nextX, nextY) {
       nextX - r < wall.x + wall.w &&
       nextY + r > wall.y &&
       nextY - r < wall.y + wall.h
-    ) {
-      return true;
-    }
+    ) 
+    return true;
+
   }
   return false;
 }
@@ -214,11 +226,6 @@ beanInWall (bx, by){
       by < wall.y + wall.h
     ) 
     return true;
-    
   }
-
   return false;
-
-
-
 }
