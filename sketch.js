@@ -194,7 +194,7 @@ function draw() {
   //적이동
   EnemyMove();
 
-
+  drawEnemy();
   checkHit();
 
   // 팩맨 생성 
