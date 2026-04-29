@@ -6,14 +6,8 @@ let speed = 3;
 let pacmanSize = 50;
 let mapImg;
 
-let walls = [
-  { x: 350, y: 100, w: 2100, h: 40 },   
-  { x: 350, y: 1400, w: 2100, h: 40 }, 
-  { x: 350, y: 100, w: 40, h: 500 },   
-  { x: 350, y: 900, w: 40, h: 540 },   
-  { x: 2410, y: 100, w: 40, h: 500 },  
-  { x: 2410, y: 900, w: 40, h: 540 },  
-];
+
+
 
 function preload() {
   mapImg = loadImage("Map.png");
@@ -55,9 +49,9 @@ function draw() {
   let nextY = y + dirY * speed;
 
   // 벽 충돌 체크
-  if (!hitWall(nextX, nextY)) {
+  if (onRoad(nextX, nextY)) {
     x = nextX;
-    y = nextY;
+    y = nextY;s
   }
 
   fill(0, 200, 255, 150);
