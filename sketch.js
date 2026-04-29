@@ -216,7 +216,7 @@ if (x > 2816 && y > 700 && y < 800) {
   fill(255);
   textSize(80);
   textAlign(LEFT, TOP);
-  text("Score: " + score, width - 50, 40);
+  text("Score: " + score, 50, 40);
 
 }
 
@@ -382,4 +382,24 @@ function drawEnemy() {
   fill(255);
   circle(enemyX - 10, enemyY - 8, 10);
   circle(enemyX + 10, enemyY - 8, 10);
+}
+
+function checkHit(){
+  let d = dist(x, y, enemyX, enemyY);
+
+  if (d < pacmanSize / 2 + 25) {
+    if (enemyHit == false) {
+      energy -= 1;
+      enemyHit = true;
+
+      x = 360;
+      y = 760;
+
+      if (energy <= 0) {
+        gameState = "lose";
+      }
+    }
+  } else {
+    enemyHit = false;
+  }
 }
