@@ -272,3 +272,22 @@ function checkWin(){
   }
   gameState = "win";
 } 
+
+
+function EndMassage() {
+
+  fill (0, 180);
+  rect (0,0,width, height);
+
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(80);
+
+  if (gameState == "win"){
+    text("You win! Congratulations!", width / 2, height / 2-50);
+  } else if (gameState == "lose"){
+    text("Game Over! Try Again", width / 2, height / 2-50);
+  }
+
+
+}
