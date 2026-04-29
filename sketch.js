@@ -117,7 +117,7 @@ function draw() {
   image(mapImg, 0, 0, width, height);
 
   if (gameState != "play") {
-  EndMessage();
+  EndMassage();
   return;
 
   let dirX = 0;
@@ -197,7 +197,7 @@ if (x > 2816 && y > 700 && y < 800) {
   //적 생성 
   drawEnemy();
 
-  cheakHit();
+  checkHit();
 
   // 팩맨 생성 
   fill(255, 255, 0);
@@ -343,7 +343,7 @@ function mousePressed() {
 
   }
 }
-}
+
 
 
 function EnemyMove(){
