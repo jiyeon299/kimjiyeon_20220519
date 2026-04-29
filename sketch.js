@@ -86,6 +86,8 @@ let walls = [
 ];
 
 
+let beans = [];
+let score = 0;
 
 function preload() {
   mapImg = loadImage("Map.png");
@@ -94,6 +96,8 @@ function preload() {
 function setup() {
   createCanvas(2816, 1536);
 
+
+  beansSet();
 
 }
 
@@ -184,4 +188,38 @@ function hitWall(nextX, nextY) {
 }
 
 
+//콩 생성 함수 
+function beansSet(){
+  for (let bx = 420; bx < 2400; bx += 90) {
+    for (let by = 140; by < 1400; by += 90) {
+      // 벽 아니면 콩 생성!! 
+      if (!beanInWall(bx, by)) {
+        beans.push({
+          x: bx,
+          y: by,
+          eaten: false
+        });
+      }
+    }
+  }
+}
 
+beanInWall (bx, by){
+    for (let i = 0; i < walls.length; i++) {
+    let wall = walls[i];
+    
+    if (
+      bx > wall.x &&
+      bx < wall.x + wall.w &&
+      by > wall.y &&
+      by < wall.y + wall.h
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+
+
+
+}
