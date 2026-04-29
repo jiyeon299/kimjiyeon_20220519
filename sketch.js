@@ -1,3 +1,11 @@
+let x = 50;
+let y = 50;
+let dirX = 0;
+let dirY = 0;
+let angle = 3;
+let speed = 2;
+
+
 function setup() {
   createCanvas(600,600);
   
