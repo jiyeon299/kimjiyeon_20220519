@@ -254,7 +254,7 @@ function eat_Beans(){
     if (beans[i].eaten == false){
       let d = dist (x,y, beans[i].x, beans[i].y);
 
-      if (d < pacmanSize / 12){
+      if (d < pacmanSize / 2 + 10){
         beans[i].eaten = true ;
         score += 1;
       }
@@ -274,3 +274,42 @@ function checkWin(){
 } 
 
 
+function EndMassage() {
+  fill(0, 180);
+  rect(0, 0, width, height);
+
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(80);
+
+  if (gameState == "win") {
+    text("Congratulations! You win!", width / 2, height / 2 - 80);
+  } else if (gameState == "lose") {
+    text("Try again! ", width / 2, height / 2 - 80);
+  }
+
+  fill(255);
+  rect(width / 2 - 180, height / 2 + 20, 360, 100, 20);
+
+  fill(0);
+  textSize(45);
+  text("RESTART", width / 2, height / 2 + 70);
+}
+
+function mousePressed() {
+  if (gameState != "play") {
+
+    if (mouseX > width / 2 - 180) {
+      if (mouseX < width / 2 + 180) {
+        if (mouseY > height / 2 + 20) {
+          if (mouseY < height / 2 + 120) {
+
+            restartGame();
+
+          }
+        }
+      }
+    }
+
+  }
+}
