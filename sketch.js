@@ -8,17 +8,22 @@ let speed = 2;
 
 function setup() {
   createCanvas(600,600);
-  
 }
 
 function draw() {
   background(220);
 
   
+  x += dirX * speed;
+  y += dirY * speed;
+
   fill(255, 255, 0);
   noStroke();
 
   let biteSize = PI / 16;
+  let mouth = abs(sin(frameCount * 0.1)) * PI / 5;
+
+  
   let startAngle = biteSize + sin(frameCount * 0.1) + biteSize;
   let endAngle = TWO_PI  - biteSize;
   arc(50, 50, 80, 80, startAngle, endAngle, PIE);
