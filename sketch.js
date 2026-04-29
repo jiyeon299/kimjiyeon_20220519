@@ -1,12 +1,16 @@
-let x = 420; //시작 위치 
-let y = 720;
+let x = 360; //시작 위치 
+let y = 760;
 let angle = 0;
 let speed = 3;
 
 let pacmanSize = 50;
 let mapImg;
 
-
+let roads = [
+  { x: 0, y: 690, w: 560, h: 90 },
+  { x: 330, y: 120, w: 2150, h: 90 },
+  { x: 330, y: 300, w: 2150, h: 90 },
+];
 
 
 function preload() {
@@ -51,7 +55,7 @@ function draw() {
   // 벽 충돌 체크
   if (onRoad(nextX, nextY)) {
     x = nextX;
-    y = nextY;s
+    y = nextY;
   }
 
   fill(0, 200, 255, 150);
