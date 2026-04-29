@@ -7,8 +7,11 @@ let pacmanSize = 50;
 let mapImg;
 
 let roads = [
+
   //왼쪽 입구 
   { x: 0, y: 690, w: 560, h: 90 },
+  //오른쪽 입구
+  { x: 2160, y: 690, w: 560, h: 90 },
   //위쪽 가로 큰길
   { x: 330, y: 120, w: 2150, h: 90 },
   // 상단 
@@ -74,17 +77,19 @@ function draw() {
   let nextX = x + dirX * speed;
   let nextY = y + dirY * speed;
 
-  // 벽 충돌 체크
+  // 도로 충돌 체크
   if (onRoad(nextX, nextY)) {
     x = nextX;
     y = nextY;
   }
 
-  fill(0, 200, 255, 150);
+
+  // 도로 확인!! 
+  fill(255, 0, 255,150);
   noStroke();
 
-  for (let i = 0; i < walls.length; i++) {
-    rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
+  for (let i = 0; i < roads.length; i++) {
+    rect(roads[i].x, roads[i].y, roads[i].w, roads[i].h);
   }
 
 
@@ -102,17 +107,17 @@ function draw() {
 }
 
 
-function hitWall(hx, hy) {
+function onRoad(hx, hy) {
   let r = pacmanSize / 2;
 
-  for (let i = 0; i < walls.length; i++) {
-    let wall = walls[i];
+  for (let i = 0; i < roads.length; i++) {
+    let road = roads[i];
 
     if (
-      hx + r > wall.x &&
-      hx - r < wall.x + wall.w &&
-      hy + r > wall.y &&
-      hy - r < wall.y + wall.h
+      hx + r > road.x &&
+      hx - r < road.x + road.w &&
+      hy + r > road.y &&
+      hy - r < road.y + road.h
     ) {
       return true;
     }
