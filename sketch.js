@@ -334,8 +334,27 @@ function mousePressed() {
 
 
 function EnemyMove(){
+    let nextEnemyX = enemyX + enemyDirX ;
+  let nextEnemyY = enemyY + enemyDirY ;
+
+  if (hitWall(nextEnemyX, nextEnemyY)) {
+    let r = floor(random(4));
+
+    if (r == 0) {
+      enemyDirX = 1;
+      enemyDirY = 0;
+    } else if (r == 1) {
+      enemyDirX = -1;
+      enemyDirY = 0;
+    } else if (r == 2) {
+      enemyDirX = 0;
+      enemyDirY = 1;
+    } else if (r == 3) {
+      enemyDirX = 0;
+      enemyDirY = -1;
+    }
+  } 
 
 
 
-  
 }
