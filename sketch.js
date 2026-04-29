@@ -130,6 +130,10 @@ function draw() {
   let nextX = x + dirX * speed;
   let nextY = y + dirY * speed;
 
+  //콩먹기
+  eat_Beans();
+
+  
   //벽 부딪혔는지 확인
   if (!hitWall(nextX, nextY)) {
     x = nextX;
@@ -181,6 +185,12 @@ if (x > 2816 && y > 700 && y < 800) {
   pop();
 
 
+  // 점수 
+  fill(255);
+  textSize(40);
+  textAlign(RIGHT, TOP);
+  text("Score: " + score, width - 50, 40);
+
 }
 
 function hitWall(nextX, nextY) {
@@ -228,4 +238,18 @@ beanInWall (bx, by){
     return true;
   }
   return false;
+}
+
+function eat_Beans(){
+
+  for (let i = 0; i < beans.length; i++){
+    if (beans[i].eat== false){
+      let d = dist (x,y, beans[i].x, beans[i].y);
+
+      if (d < pacmanSize / 2){
+        beans[i].eat = true ;
+        score += 1;
+      }
+    }
+  }
 }
