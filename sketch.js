@@ -1,15 +1,18 @@
-let x = 50;
-let y = 50;
-let angle = 3;
+let x = 420; //시작 위치 
+let y = 720;
+let angle = 0;
 let speed = 3;
 
 let pacmanSize = 50;
 let mapImg;
 
 let walls = [
-  { x: 100, y: 100, w: 200, h: 20 },
-  { x: 300, y: 200, w: 20, h: 200 },
-  { x: 500, y: 300, w: 150, h: 20 },
+  { x: 350, y: 100, w: 2100, h: 40 },   
+  { x: 350, y: 1400, w: 2100, h: 40 }, 
+  { x: 350, y: 100, w: 40, h: 500 },   
+  { x: 350, y: 900, w: 40, h: 540 },   
+  { x: 2410, y: 100, w: 40, h: 500 },  
+  { x: 2410, y: 900, w: 40, h: 540 },  
 ];
 
 function preload() {
@@ -23,7 +26,7 @@ function setup() {
 }
 
 function draw() {
-  Image(mapImg, 0, 0, width, height);
+  image(mapImg, 0, 0, width, height);
 
   let dirX = 0;
   let dirY = 0;
@@ -57,10 +60,18 @@ function draw() {
     y = nextY;
   }
 
+  fill(0, 200, 255, 150);
+  noStroke();
+
+  for (let i = 0; i < walls.length; i++) {
+    rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
+  }
+
+
   // 팩맨 
   fill(255, 255, 0);
   noStroke();
-  
+
   let mouth = abs(sin(frameCount * 0.1)) * PI / 5;
 
   push();
