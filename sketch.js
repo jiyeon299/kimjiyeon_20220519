@@ -140,6 +140,8 @@ function draw() {
   
   //콩먹기
   eat_Beans();
+  //다먹었는지 체크 
+  checkWin();
 
 
   if (x < 0 && y > 700 && y < 800) {
@@ -259,3 +261,14 @@ function eat_Beans(){
     }
   }
 }
+
+
+// 콩 다먹었는지 체크하기 
+function checkWin(){
+  for (let i = 0; i < beans.length; i++){
+    if (beans[i].eaten == false){
+      return ;
+    }
+  }
+  gameState = "win";
+} 
