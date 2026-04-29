@@ -340,7 +340,7 @@ function mousePressed() {
     if (mouseX > left && mouseX < right) {
       if (mouseY > top && mouseY < bottom) {
 
-        restartGame();
+        restart();
 
       }
     }
