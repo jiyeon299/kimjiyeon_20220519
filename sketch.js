@@ -247,11 +247,11 @@ function beanInWall (bx, by){
 function eat_Beans(){
 
   for (let i = 0; i < beans.length; i++){
-    if (beans[i].eat== false){
+    if (beans[i].eaten == false){
       let d = dist (x,y, beans[i].x, beans[i].y);
 
       if (d < pacmanSize / 2){
-        beans[i].eat = true ;
+        beans[i].eaten = true ;
         score += 1;
       }
     }
