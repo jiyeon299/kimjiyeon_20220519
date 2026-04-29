@@ -6,6 +6,18 @@ let speed = 3;
 let pacmanSize = 50;
 let mapImg;
 
+let enemyX = 1400;
+let enemyY = 760;
+let enemyDirX = 1;
+let enemyDirY = 0;
+
+let enemySpeed = 1;
+
+let energy = 3;
+let gameState = "play"; //실행, 승리, 패배 상태 구분
+let enemyHit = false;
+
+
 let walls = [
 
   //외곽선
@@ -103,6 +115,10 @@ function setup() {
 
 function draw() {
   image(mapImg, 0, 0, width, height);
+
+  if (gameState != "play") {
+  EndMessage();
+  return;
 
   let dirX = 0;
   let dirY = 0;
@@ -299,17 +315,27 @@ function EndMassage() {
 function mousePressed() {
   if (gameState != "play") {
 
-    if (mouseX > width / 2 - 180) {
-      if (mouseX < width / 2 + 180) {
-        if (mouseY > height / 2 + 20) {
-          if (mouseY < height / 2 + 120) {
+    let left = width / 2 - 180;
+    let right = width / 2 + 180;
+    let top = height / 2 + 20;
+    let bottom = height / 2 + 120;
 
-            restartGame();
+    if (mouseX > left && mouseX < right) {
+      if (mouseY > top && mouseY < bottom) {
 
-          }
-        }
+        restartGame();
+
       }
     }
 
   }
+}
+}
+
+
+function EnemyMove(){
+
+
+
+  
 }
