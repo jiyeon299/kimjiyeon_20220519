@@ -7,10 +7,30 @@ let pacmanSize = 50;
 let mapImg;
 
 let walls = [
-  { x: 100, y: 100, w: 200, h: 20 },
+
+  //외곽선
+  { x: 340, y: 40, w: 2140, h: 40 },  
+  { x: 375, y: 1450, w: 2070, h: 40 }, 
+  { x: 340, y: 80, w: 40, h: 460 },   
+  { x: 2440, y: 80, w: 40, h: 460 }, 
+  { x: 380, y: 1000, w: 40, h: 500 },   
+  { x: 2395, y: 1000, w: 40, h: 500 }, 
+  { x: 375, y: 970, w: 200, h: 40 }, 
+  { x: 2240, y: 970, w: 200, h: 40 }, 
+  { x: 375, y: 500, w: 200, h: 40 }, 
+  { x: 2240, y: 500, w: 200, h: 40 }, 
+  { x: 2250, y: 690, w: 580, h: 40 }, 
+  { x: 2250, y: 810, w: 580, h: 40 }, 
+  { x: 50, y: 690, w: 525, h: 40 }, 
+  { x: 50, y: 810, w: 525, h: 40 }, 
+
+  { x: 2240, y: 525, w: 40, h: 200 },
+  { x: 535, y: 525, w: 40, h: 200 },
+  { x: 535, y: 820, w: 40, h: 180 },
+
 ];
 
-]
+
 function preload() {
   mapImg = loadImage("Map.png");
 }
@@ -50,19 +70,18 @@ function draw() {
   let nextX = x + dirX * speed;
   let nextY = y + dirY * speed;
 
-  // 도로 충돌 체크
-  if (onRoad(nextX, nextY)) {
+  //벽 부딪혔는지 확인
+  if (!hitWall(nextX, nextY)) {
     x = nextX;
     y = nextY;
-  }
+  } 
 
-
-  // 도로 확인!! 
-  fill(255, 0, 255,150);
+  // 벽 확인!! 
+  fill(255, 0, 255,120);
   noStroke();
 
-  for (let i = 0; i < roads.length; i++) {
-    rect(roads[i].x, roads[i].y, roads[i].w, roads[i].h);
+  for (let i = 0; i < walls.length; i++) {
+    rect(walls[i].x, walls[i].y, walls[i].w, walls[i].h);
   }
 
 
@@ -79,6 +98,21 @@ function draw() {
   pop();
 }
 
+function hitWall(nextX, nextY) {
+  let r = pacmanSize / 2;
+  for (let i = 0; i < walls.length; i++) {
+    let wall = walls[i];
+    if (
+      nextX + r > wall.x &&
+      nextX - r < wall.x + wall.w &&
+      nextY + r > wall.y &&
+      nextY - r < wall.y + wall.h
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
 
 
 
