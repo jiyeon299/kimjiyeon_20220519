@@ -1,7 +1,5 @@
 let x = 50;
 let y = 50;
-let dirX = 0;
-let dirY = 0;
 let angle = 3;
 let speed = 2;
 
@@ -12,6 +10,9 @@ function setup() {
 
 function draw() {
   background(220);
+
+  let dirX = 0;
+  let dirY = 0;
 
   // 방향키 입력 
   if (keyIsDown(LEFT_ARROW)) {
@@ -42,13 +43,9 @@ function draw() {
   let mouth = abs(sin(frameCount * 0.1)) * PI / 5;
 
   push();
-
   translate(x,y);
   rotate(angle);
-
-
   arc(0,0, 80, 80, mouth, TWO_PI - mouth, PIE);
-  
   pop();
 }
 
