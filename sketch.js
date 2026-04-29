@@ -207,15 +207,14 @@ function beansSet(){
 beanInWall (bx, by){
     for (let i = 0; i < walls.length; i++) {
     let wall = walls[i];
-    
     if (
       bx > wall.x &&
       bx < wall.x + wall.w &&
       by > wall.y &&
       by < wall.y + wall.h
-    ) {
-      return true;
-    }
+    ) 
+    return true;
+    
   }
 
   return false;
