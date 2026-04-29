@@ -191,8 +191,15 @@ if (x > 2816 && y > 700 && y < 800) {
     }
   }
 
+  //적이동
+  EnemyMove();
 
-  // 팩맨 
+  //적 생성 
+  drawEnemy();
+
+  cheakHit();
+
+  // 팩맨 생성 
   fill(255, 255, 0);
   noStroke();
 
@@ -246,6 +253,7 @@ function beansSet(){
   }
 }
 
+//콩이 벽 안인지 체크 
 function beanInWall (bx, by){
   let beanSize = 30;
   let r = beanSize / 2;
@@ -264,6 +272,8 @@ function beanInWall (bx, by){
   return false;
 }
 
+
+//콩먹기 함수 
 function eat_Beans(){
 
   for (let i = 0; i < beans.length; i++){
@@ -290,6 +300,7 @@ function checkWin(){
 } 
 
 
+//종료 메세지 
 function EndMassage() {
   fill(0, 180);
   rect(0, 0, width, height);
@@ -311,6 +322,8 @@ function EndMassage() {
   textSize(45);
   text("RESTART", width / 2, height / 2 + 70);
 }
+
+
 
 function mousePressed() {
   if (gameState != "play") {
@@ -334,8 +347,8 @@ function mousePressed() {
 
 
 function EnemyMove(){
-    let nextEnemyX = enemyX + enemyDirX ;
-  let nextEnemyY = enemyY + enemyDirY ;
+    let nextEnemyX = enemyX + enemyDirX * enemySpeed;
+  let nextEnemyY = enemyY + enemyDirY * enemySpeed;
 
   if (hitWall(nextEnemyX, nextEnemyY)) {
     let r = floor(random(4));
@@ -353,8 +366,20 @@ function EnemyMove(){
       enemyDirX = 0;
       enemyDirY = -1;
     }
-  } 
+  } else {
+    enemyX = nextEnemyX;
+    enemyY = nextEnemyY;
+  }
+
+}
 
 
+function drawEnemy() {
+  fill(255, 0, 0);
+  noStroke();
+  circle(enemyX, enemyY, 50);
 
+  fill(255);
+  circle(enemyX - 10, enemyY - 8, 10);
+  circle(enemyX + 10, enemyY - 8, 10);
 }
